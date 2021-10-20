@@ -14,7 +14,7 @@ int main()
     }
     while (n < 0 || n > 50);
     
-    int *att = (int *) malloc(n * sizeof(int));
+    int att[n];
     
     printf("Ввод оценок аттестата\n");
     for (int i = 0; i < n; i++)
@@ -39,7 +39,6 @@ int main()
     else
         printf("К сожалению, со средним баллом %.2f Вы не поступите в университет.\n", ball);
     
-    free(att);
     return 0;
 }
 
