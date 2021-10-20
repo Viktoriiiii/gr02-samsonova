@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-float avgAtt(int *a, int n);
-
 int main()
 {
     int n;
@@ -14,8 +12,7 @@ int main()
     }
     while (n < 0 || n > 50);
     
-    int *att = (int *) malloc(n * sizeof(int));
-    
+    int att[n];    
     printf("Ввод оценок аттестата\n");
     for (int i = 0; i < n; i++)
     {
@@ -31,27 +28,17 @@ int main()
         }
     }
     
-    float ball = avgAtt(att, n);
-    printf("Средний балл аттестата: %.2f\n", ball);
-    
-    if (ball >= 4.6f)
-        printf("Поздравляем, со средним баллом %.2f Вы поступите в университет!\n", ball);
-    else
-        printf("К сожалению, со средним баллом %.2f Вы не поступите в университет.\n", ball);
-    
-    free(att);
-    return 0;
-}
-
-float avgAtt(int *a, int n)
-{
     float avg = 0.0f;
-    float sum = 0.0f;
-    
+    float sum = 0.0f;    
     for (int i = 0; i < n; i++)
-        sum += a[i];
-    
+        sum += att[i];    
     avg = sum / n;
+
+    printf("Средний балл аттестата: %.2f\n", avg);
+    if (avg >= 4.6f)
+        printf("Поздравляем, со средним баллом %.2f Вы поступите в университет!\n", avg);
+    else
+        printf("К сожалению, со средним баллом %.2f Вы не поступите в университет.\n", avg);
     
-    return avg;
+    return 0;
 }
