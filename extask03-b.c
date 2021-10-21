@@ -40,7 +40,6 @@ int main()
       
         t += eps;             
     }
-    printf("t = %f, x = %f, y = %f\n", t, x, y);
     
     return 0;
 }
