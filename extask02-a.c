@@ -44,7 +44,7 @@ int main()
         }
         
         strcpy(e->lastname, lastname);
-        for (int i = 0; num_marks; i++)
+        for (int i = 0; i < num_marks; i++)
             e->marks[i] = mark_min + rand() % (mark_max - mark_min + 1);
     }
     fclose(f);
