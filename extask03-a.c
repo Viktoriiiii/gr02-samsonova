@@ -5,12 +5,20 @@
 int main()
 {
     float x0, y0;
-    printf("x0, y0: ");
-    scanf("%f %f", &x0, &y0);
-    
+    do
+    {
+        printf("x0, y0 (x0 > 0 and y0 > 0): ");
+        scanf("%f %f", &x0, &y0);
+    }
+    while (x0 <= 0 || y0 <= 0);
+
     float v0, a;
-    printf("v0, a: ");
-    scanf("%f %f", &v0, &a);
+    do
+    {
+        printf("v0, a (v0 >= 0 and a >= 0): ");
+        scanf("%f %f", &v0, &a);
+    }
+    while (v0 < 0 || a < 0);
     
     float ra = a * (float) M_PI / 180.0f;
     
