@@ -36,6 +36,5 @@ int main()
         fwrite(row, sizeof(struct record), n, f);
         
     fclose(f);
-
     return 0;
 }
