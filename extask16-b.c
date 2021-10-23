@@ -31,13 +31,16 @@ int main()
 
     FILE *f = fopen("extask16-b-out.txt", "w+");
     
-    for (int i = 0; i < n; i++)
-    {
-        fprintf(f, "%s %s %d %d\n", 
-            row[i].drug_name, row[i].indications,
-            row[i].exp_years, row[i].mfg_year);
+    if (f == NULL) puts("failed to open file.");
+    else
+    {    
+        for (int i = 0; i < n; i++)
+        {
+            fprintf(f, "%s %s %d %d\n", 
+                row[i].drug_name, row[i].indications,
+                row[i].exp_years, row[i].mfg_year);
+        }
     }
-    
     fclose(f);
 
     return 0;
