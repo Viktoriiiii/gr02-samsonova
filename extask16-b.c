@@ -29,7 +29,7 @@ int main()
             row[i].exp_years, row[i].mfg_year);
     }
 
-    FILE *f = fopen("extask16-a-out.txt", "w+");
+    FILE *f = fopen("extask16-b-out.txt", "w+");
     
     for (int i = 0; i < n; i++)
     {
