@@ -8,7 +8,7 @@ int main()
     int salary[month];
     
     int inp;
-    printf("select salary entry: 1 - random, 2 - keybord input\n");
+    printf("select salary: 1 - random, 2 - keybord input\n");
     scanf("%d", &inp);
     
     if (inp == 1)
