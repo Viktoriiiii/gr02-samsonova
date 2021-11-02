@@ -1,44 +1,109 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main()
+#define m_max 100
+int n;
+int mark[m_max];
+
+#define mmin 2
+#define mmax 5
+
+#define mpass 4.6f
+
+void print()
 {
-    int n;
-    float pass = 4.6f;
     do
     {
-        printf("Введите пожалуйста количество оценок аттестата: ");
+        printf("enter the number of grades certificate: ");
         scanf("%d", &n);
     }
-    while (n < 0 || n > 50);
-    
-    int att[n];    
-    printf("Ввод оценок аттестата\n");
+    while (n < 0 || n > m_max);
+}
+
+void key()
+{
+    print();
     for (int i = 0; i < n; i++)
     {
-        printf("Оценка %d: ", i + 1);
+        printf("grade %d: ", i + 1);
         int temp = 0;
         scanf("%d", &temp);
         if (temp > 1 && temp < 6)
-                    att[i] = temp;
+            mark[i] = temp;
         else
         {
-            printf("Допустимый диапазон значений [2; 5]\n");
+            printf("valid range of values [2; 5]\n");
             i--;
         }
     }
-    
-    float avg = 0.0f;
-    float sum = 0.0f;    
-    for (int i = 0; i < n; i++)
-        sum += att[i];    
-    avg = sum / n;
+}
 
-    printf("Средний балл аттестата: %.2f\n", avg);
-    if (avg >= 4.6f)
-        printf("Поздравляем, со средним баллом %.2f Вы поступите в университет!\n", avg);
+void file()
+{
+    n = 10;
+    FILE *f = fopen("extask07-in.txt", "r");
+    
+    if (f == NULL) puts("failed to open file.");
     else
-        printf("К сожалению, со средним баллом %.2f Вы не поступите в университет.\n", avg);
+    {
+        for (int i = 0; i < n; i++)
+            fscanf(f, "%d", &mark[i]);
+    }
+    fclose(f);
+}
+
+void randomno()
+{
+    print();
+    printf("arr: ");
+    for (int i = 0; i < n; i++)
+    {
+        mark[i] = mmin + rand() % (mmax - mmin + 1);
+        printf("%d ", mark[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{   
+    int choice;
+    printf("entering the grades of the certificate\n");
+    do
+    {
+        printf("1 - input from keyboard\n");
+        printf("2 - input from file\n");
+        printf("3 - input randomly\n");
+        printf("choice: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+            case 1: key(); break;
+            case 2: file(); break;
+            case 3: randomno(); break;
+        }
+      //  printf("\n");
+    }
+    while (choice < 1 || choice > 3); 
+    
+    float avg_in;
+    do
+    {
+        printf("enter avg university: ");
+        scanf("%f", &avg_in);
+    }
+    while (avg_in <= 0 || avg_in > 5);
+
+    float avg = 0.0f;
+    int sum = 0.0f;    
+    for (int i = 0; i < n; i++)
+        sum += mark[i];    
+    avg = (float) sum / (float) n;
+
+    printf("yurs avg: %.2f\n", avg);
+    if (avg >= avg_in)
+        printf("Congratulations, with an avg of %.2f you are entering the university!\n", avg);
+    else
+        printf("Unfortunately, with an avg of %.2f, you will not go to university.\n", avg);
     
     return 0;
 }
