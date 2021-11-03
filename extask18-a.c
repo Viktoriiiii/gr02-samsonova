@@ -37,6 +37,7 @@ int main()
     }
     
     d[di] = '\0';
+    printf("compressed string: ");
     puts(d);
     
     return 0;
