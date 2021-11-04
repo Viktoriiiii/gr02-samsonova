@@ -57,32 +57,35 @@ int main()
     while (1)
     {
         if (sd[i] == '\0') break;
-        if (sd[i] >= 'a' && sd[i] <= 'z') 
+        if ((sd[i] >= 'a' && sd[i] <= 'z') || (sd[i] >= 'A' && sd[i] <= 'Z'))
         {
             dd[ddi] = sd[i];
             i++;
-            if (sd[i] != '\0') ddi++;
+            ddi++;
         }
         else 
         {
-            int dig = 0;
+            int dig = 1;
             char didd[4];
-            int j = 0;
-            while (!(sd[i] >= 'a' && sd[i] <= 'z'))
+            int j = -1;
+            int rt = 0;
+            while (dig > 0)
             {
+                if (!((sd[i] >= 'a' && sd[i] <= 'z') || (sd[i] >= 'A' && sd[i] <= 'Z')))
+                {
+                    j++;
+                    didd[j] = sd[i];                    
+                    i++;
+                    rt++;
+                }
+                else dig = 0;
                 
-                didd[j] = sd[i];
-                
-                j++;
-                i++;
             }
-            
-            int ldig = strlen(didd);
-            dig = atoi(didd);
-            for (int k = 1; k < dig; k++)
+            int dddig = atoi(didd);
+            for (int k = 1; k < dddig; k++)
             {
-                dd[ddi] = sd[i-ldig-1];
-                if (k < dig) ddi++;
+                dd[ddi] = sd[i-rt-1];
+                ddi++;
             }
         }
     }
@@ -90,7 +93,7 @@ int main()
      //   иначе (Если это цифра) - продолжаем считывать строку
      //   как только цифры кончаются, выводим букву столько раз, сколько насчитали цифр.
     int ldd = strlen(dd);
-    for (int i = 0; i <= ddi; i++)
+    for (int i = 0; i < ddi; i++)
         printf("%c", dd[i]);
     printf("\n");
     
