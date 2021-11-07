@@ -1,0 +1,10 @@
+2
+3 1
+how to output a string in c?
+printf()
+print()
+show()
+2 2
+how to exit main function in c?
+leave()
+exit()
