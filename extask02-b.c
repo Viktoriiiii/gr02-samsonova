@@ -22,7 +22,6 @@ struct element *last = NULL;
 int main()
 {
     FILE *f = fopen("extask02list.txt", "r");
-    
     while (1)
     {
         char lastname[max_lastname];
@@ -73,22 +72,53 @@ int main()
         
         current = current->prev;
     }
+  
+    // delete if 2 and more 2
     printf("\n");
-
-    struct element e;
-    for (int i = 0; i < max_lastname; i++)
+    current = first;
+    int two = 0;
+    while (current != NULL)
     {
-        int kl = 0;
-        for (int j = 0; j < num_marks; j++)
-        {
-            if (e.marks[j] == 2) kl++;
-        }
-        if (kl < 2) 
-        {
-            printf("%s %d %d %d\n", e.lastname[i], e.marks[0], e.marks[1], e.marks[2]);
-        }
+        
+        for (int i = 0; i < num_marks; i++)
+            if (current->marks[i] == 2)
+                two++;
+        
+            if (two > 1)
+            {
+                current->next->prev = current->prev;
+                current->prev->next = current->next;
+                struct element * temp = current->next;
+                free(current);
+                current = temp;
+          //  e->prev = last;
+          //  e->next = NULL;
+          //  last = e;
+            }
+            else 
+            {
+                current = current->next;
+               // printf("%s", current->lastname);
+              //  for (int i = 0; i < num_marks; i++)
+                  //  printf(" %d", current->marks[i]);
+            }
+        //printf("\n");
+        two = 0;
+      //  
     }
-      
+  
+    current = first;
+    while (current != NULL)
+    {
+        printf("%s", current->lastname);
+        for (int i = 0; i < num_marks; i++)
+            printf(" %d", current->marks[i]);
+        printf("\n");
+        
+        current = current->next;
+    }
+    
+    printf("\n");
   
     return 0;
 }
