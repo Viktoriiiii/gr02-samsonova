@@ -56,12 +56,10 @@ int main()
         for (int i = 0; i < num_marks; i++)
             printf(" %d", current->marks[i]);
         printf("\n");
-        
         current = current->next;
-    }
-    
-    printf("\n");
-    
+    }    
+    printf("\n");    
+
     current = last;
     while (current != NULL)
     {
@@ -69,7 +67,6 @@ int main()
         for (int i = 0; i < num_marks; i++)
             printf(" %d", current->marks[i]);
         printf("\n");
-        
         current = current->prev;
     }
   
@@ -79,11 +76,9 @@ int main()
     int two = 0;
     while (current != NULL)
     {
-        
         for (int i = 0; i < num_marks; i++)
             if (current->marks[i] == 2)
-                two++;
-        
+                two++;        
             if (two > 1)
             {
                 current->next->prev = current->prev;
@@ -91,20 +86,9 @@ int main()
                 struct element * temp = current->next;
                 free(current);
                 current = temp;
-          //  e->prev = last;
-          //  e->next = NULL;
-          //  last = e;
             }
-            else 
-            {
-                current = current->next;
-               // printf("%s", current->lastname);
-              //  for (int i = 0; i < num_marks; i++)
-                  //  printf(" %d", current->marks[i]);
-            }
-        //printf("\n");
+            else current = current->next;
         two = 0;
-      //  
     }
   
     current = first;
@@ -113,11 +97,9 @@ int main()
         printf("%s", current->lastname);
         for (int i = 0; i < num_marks; i++)
             printf(" %d", current->marks[i]);
-        printf("\n");
-        
+        printf("\n");        
         current = current->next;
-    }
-    
+    }    
     printf("\n");
   
     return 0;
