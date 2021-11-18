@@ -1,7 +1,7 @@
 // меню с поиском, по фио владельца или по номеру счета 1.24
 // успешный поиск - всю инфу о счете вывести
 
-// run with gcc extask13-a.c --std=c99 -Wno-deprecated-declarations && (cat extask13-a-in.txt | ./a.out)
+// run with gcc extask14-b.c --std=c99 -Wno-deprecated-declarations && (cat extask14-b-in.txt | ./a.out)
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,29 +16,53 @@ struct record
     float res;
 };
 
-
 #define rows 3
 struct record tab[rows];
 
 void input1()
 {
     int count = 0;
+    int n = 0;
+    char tem[100];
     printf("input № account\n");
-    scanf("%d", count);
+    fgets(tem, 10, stdin);
+    count = atoi(tem);
     for (int i = 0; i < rows; i++)
+    {
         if (tab[i].acc == count)
-        printf("%d\t%s\t%.2f\t%d\t%.2f\n", tab[i].acc, tab[i].fio, tab[i].sum, tab[i].prc, tab[i].res);
-
+        {
+            printf("%d\t%s\t%.2f\t%d\t%.2f\n", tab[i].acc, tab[i].fio, tab[i].sum, tab[i].prc, tab[i].res);
+            n++;
+        }        
+    }    
+    if (n < 1) printf("not found\n");
 }
 
 void input2()
 {
-    char tmp1[30];
-    printf("fio: ");
-    gets(tmp1);
+    printf("input lastname: ");
+    char query[50];
+    fgets(query, 50, stdin);
+    char *p = strchr(query, '\n');
+    if (p != NULL) *p = 0;
+    p = strchr(query, '\r');
+    if (p != NULL)  *p = 0;
+    
+    int n = 0;
+    for (int i = 0; i < rows; i++)
+    {
+        char temp[50];
+        strcpy(temp, tab[i].fio);
+        char *p = strtok(temp, " ");
+        if (strcmp(query, p) == 0) 
+        {
+            printf("\n");
+            printf("%s\t%d\t%.2f\t%d\t%.2f\n", tab[i].fio, tab[i].acc, tab[i].sum, tab[i].prc, tab[i].res);
+            n++;
+        }
+    }
+    if (n < 1) printf("not found\n");    
 }
-
-int ch = 0;
 
 int main()
 {
@@ -72,20 +96,23 @@ int main()
         printf("%d\t%s\t%.2f\t%d\t%.2f\n", tab[i].acc, tab[i].fio, tab[i].sum, tab[i].prc, tab[i].res);
     
     int choise = 0;
+    char te[10];
     do
-    {
-        printf("search: \n");
+    {        
+        char te[10];
         printf("0 - exit\n");
         printf("1 - № счета\n");
         printf("2 - fio\n");
-        scanf("%d", &choise);
+        printf("search: ");
+        fgets(te, 10, stdin);
+        choise = atoi(te);
         switch(choise)
         {
-            case 1: ch = 1; input1(); break;
-            case 2: ch = 2; input2(); break;
+            case 1: input1(); break;
+            case 2: input2(); break;
         }
     }
-    while(choise != 0)
+    while(choise != 0);
 
     return 0;
 }
