@@ -1,4 +1,4 @@
-// run with gcc extask15-b.c --std=c99 -Wno-deprecated-declarations && (cat extask15-b-in.txt | ./a.out)
+// run with gcc extask15-c.c && (cat extask15-b-in.txt | ./a.out)
 
 #include <stdio.h>
 #include <string.h>
