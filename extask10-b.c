@@ -45,7 +45,7 @@ int main()
         printf("\t\033[1;32m%.1f\033[0m\n", avg[y]);
         //printf("\n");
     }
-    printf("max_avg: %.1f is it %d sportsmen\n", max, max_n);
+    printf("max_avg: %.1f. It is %d sportsmen\n", max, max_n);
 
     return 0;
 }
