@@ -1,0 +1,10 @@
+eee 1
+world 1
+hello 2
+
+most rare word: 
+eee, his count = 1
+world, his count = 1
+
+most common word: 
+hello, his count = 2
